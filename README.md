@@ -1,32 +1,38 @@
 ArchInstall-script BETA
 ==================
 
-Install script for archlinux to provide easy install, Please Read README before you do anything.
+This is an install-script for Archlinux, created to provide a quick and easy fresh install, please read the **ENTIRE README** file before you do anything at all. I take no responsibility if this script breaks your machine, you use at your own risk! It's still a BETA. So PLEASE don't run this script on a server of yours unless you really know what you are doing, really!
 
-First Edit the file to match your locale settings. (Mirror and locale)
+## Prepare ##
+The first thing you need to do, before using the script is to edit and match your locale settings, (mirror and locale). By default it is set to Swedish, because that's where I am from.
 
-The install is best tested on a virtual machine before you try this on a live machine, the default is for the script is to
-use the entire disk.
+```shell
+arch-chroot /mnt echo "sv_SE.UTF-8 UTF-8" >> /mnt/etc/locale.gen
+arch-chroot /mnt echo "sv_SE ISO-8859-1" >> /mnt/etc/locale.gen
+arch-chroot /mnt locale-gen
+arch-chroot /mnt echo "LANG=sv_SE.UTF-8" > /mnt/etc/locale.conf
+arch-chroot /mnt echo "KEYMAP=sv-latin1" > /mnt/etc/vconsole.conf
+```
 
-To install with script you can either start it in the boot loader or start it by downloading the script and run it.
+#### Installation ####
+To execute an install with this script you can either start it directly inside the boot loader, or you could start it by downloading the script and run it.
 
-put it on a webserver
+* Put the script it on a webserver accessible by your machine. Then add `script=http://www.domain.tld/script.sh` in the bootloader configuration.
 
-add script=http://adress.to/script.sh in the bootloader
+* Or you could download the script to your machine and do `chmod +x scriptname.sh` and then execute it with `./scriptname.sh`.
 
-or download the script to the machine and do "chmod +x scriptname.sh"
-then runt it with "./scriptname.sh"
+The script will ask you a few questions before it actually executes.
 
-and PLEASE don´t run it on a machine you are not willing to lose data, this is only a BETA script.
+**NOTE:** Do remember to change the password inside the script to something of your own.
 
-NOTE: Remember to change the password to something of your own.
+#### Default configuration ####
 
-The configuration is following
+Partiononing | Space Usage | Notes
+------------ | ----------- | -----
+bootrecord | 1 Mb | 
+/boot | 127 Mb | 
+Swap | 2 Gb | Not optional
+* / | Remaining | 
 
-Partiononing
-* 1MB Bootrecord  
-* /boot = 127mb  
-* Swap  = 2gb  
-* /     = The rest
-
-The installations is with some questions to make your choices.
+### NOTES ###
+It's highly recommended to make a test run on a virtual machine **before** you execute this script on a live machine. The default script behaviour is set to using the entire disk.
