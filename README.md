@@ -53,5 +53,14 @@ When you get the question: _Do you want to install XFCE?_ you ar not forced to d
 
 If you've selected to install XFCE you will get another question: _Do you whant to enable lightdm?_ It's the Light Desktop Manager, without it you only get the console.
 
-### NOTES ###
+### Notes ###
 It's highly recommended to make a test run on a virtual machine **before** you execute this script on a live machine. The default script behaviour is set to using the entire disk.
+
+### Bugs ###
+If you find an issue, let us know [here](https://github.com/toocer/ArchInstall-script/issues)!
+
+### Contributions ###
+Anyone is welcome to contribute to the ArchInstall script. There are various ways you can contribute:
+
+1. Raise an [Issue](https://github.com/toocer/ArchInstall-script/issues) on GitHub
+2. Send us a pull request with your bug fixes and/or new features
