@@ -31,7 +31,7 @@ Partiononing | Space Usage | Notes
 ------------ | ----------- | -----
 bootrecord | 1 Mb | 
 /boot | 127 Mb | 
-Swap | 2 Gb | Used on older machines
+Swap | 2 Gb | Not optional
 * / | Remaining | 
 
 ### NOTES ###
