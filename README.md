@@ -25,7 +25,7 @@ The script will ask you a few questions before it actually executes.
 
 **NOTE:** Do remember to change the password inside the script to something of your own.
 
-#### Default configuration ####
+### Default configuration ###
 
 Partiononing | Space Usage | Notes
 ------------ | ----------- | -----
@@ -33,6 +33,25 @@ bootrecord | 1 Mb |
 /boot | 127 Mb | 
 Swap | 2 Gb | Not optional
 * / | Remaining | 
+
+### Packages installed ###
+
+* yaourt _useful tool_
+* package-query
+* customizepkg
+* base
+* grub
+* dialog
+* openssh _also started after installation_
+
+When you get the question: _Do you whant to install XFCE?_ you ar not forced to do so, it is optional. If you do choose to installl XFCE, the following additional packages will also be installed:
+
+* xorg
+* xfce4
+* xfce4-goodies
+* lightdm-gtk2-greeter
+
+If you've selected to install XFCE you will get another question: _Do you whant to enable lightdm?_ It's the Light Desktop Manager, without it you only get the console.
 
 ### NOTES ###
 It's highly recommended to make a test run on a virtual machine **before** you execute this script on a live machine. The default script behaviour is set to using the entire disk.
