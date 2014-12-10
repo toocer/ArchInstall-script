@@ -36,7 +36,8 @@ function do_stage_1 {
 
   #expect ${DISK}1 to be GRUB-GPT-BIOS COMPAT
   #	${DISK}2 to be /boot
-  #	${DISK}3 to be /
+  #	${DISK}4 to be /
+  # ${DISK}3 to be SWAP
 
   ##################################################################
   # Stage 1, bootstrap partitions/filesystems and OS Base packages #
@@ -52,15 +53,6 @@ function do_stage_1 {
 
   # Replace mirrorlist with known fast and good Swedish mirror
   echo 'Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
-
-  #echo '[xyne-any]' >> /etc/pacman.conf
-  #echo 'SigLevel = Required' >> /etc/pacman.conf
-  #echo 'Server = http://xyne.archlinux.ca/repos/xyne' >> /etc/pacman.conf
-
-  #pacman -Sy --noconfirm pacserve
-  #systemctl start pacserve.service
-  #pacman.conf-insert_pacserve > /tmp/pacman.conf
-  #cp /tmp/pacman.conf /etc/pacman.conf
 
   # Bootstrap the Base OS packages (and grub)
   pacstrap /mnt base grub dialog openssh
@@ -86,6 +78,7 @@ function do_stage_2 {
   genfstab -U /mnt >> /mnt/etc/fstab
 
   # Configure Swedish Locale, language and keymaps
+  # Change this to your LANG
   arch-chroot /mnt echo "sv_SE.UTF-8 UTF-8" >> /mnt/etc/locale.gen
   arch-chroot /mnt echo "sv_SE ISO-8859-1" >> /mnt/etc/locale.gen
   arch-chroot /mnt locale-gen
@@ -106,23 +99,23 @@ function do_stage_2 {
 function do_stage_3 {
   echo "Running Stage 3"
 
-
+  #
   # Install yaourt and dependecis
-  # Now only downloading not finished
+  # 
 
-  cat <<EOF > /mnt/root/dostage3stuff.sh
-  #!/bin/bash
-  pacman -S wget base-devel --noconfirm
-  wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz -O /root/yaourt.tar.gz
-  wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz -O /root/package-query.tar.gz
-  wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /root/customizepkg.tar.gz
-  tar -zxf /root/yaourt.tar.gz -C /root
-  tar -zxf /root/customizepkg.tar.gz -C /root
-  tar -zxf /root/package-query.tar.gz -C /root
-  cd /root/package-query && makepkg -si --asroot --noconfirm
-  cd /root/customizepkg && makepkg -si --asroot --noconfirm
-  cd /root/yaourt && makepkg -si --asroot --noconfirm
-  EOF
+cat <<EOF > /mnt/root/dostage3stuff.sh
+#!/bin/bash
+pacman -S wget base-devel --noconfirm
+wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz -O /root/yaourt.tar.gz
+wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz -O /root/package-query.tar.gz
+wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /root/customizepkg.tar.gz
+tar -zxf /root/yaourt.tar.gz -C /root
+tar -zxf /root/customizepkg.tar.gz -C /root
+tar -zxf /root/package-query.tar.gz -C /root
+cd /root/package-query && makepkg -si --asroot --noconfirm
+cd /root/customizepkg && makepkg -si --asroot --noconfirm
+cd /root/yaourt && makepkg -si --asroot --noconfirm
+EOF
   chmod +x /mnt/root/dostage3stuff.sh
   arch-chroot /mnt /root/dostage3stuff.sh
 
@@ -131,13 +124,13 @@ function do_stage_3 {
 }
 function do_stage_4 {
   echo "Running stage 4, Installing XFCE"
+  
+cat <<EOF > /mnt/root/dostage4stuff.sh
+#!/bin/bash
 
-  cat <<EOF > /mnt/root/dostage4stuff.sh
-  #!/bin/bash
+yaourt -S xorg xfce4 xfce4-goodies lightdm-gtk2-greeter --noconfirm
 
-  yaourt -S xorg xfce4 xfce4-goodies lightdm-gtk2-greeter --noconfirm
-
-  EOF
+EOF
 
 
 
@@ -157,7 +150,8 @@ function do_stage_4 {
   #
   # End of XFCE YN part
   #
-  # If you whant to install XFCE without question remove comments from the next line
+  # If you whant to install XFCE without question remove # from the next line
+  # and add # to the above lines
   # arch-chroot /mnt sh /root/dostage4stuff.sh
 
 
