@@ -5,14 +5,14 @@ This is an install-script for Archlinux, created to provide a quick and easy fre
 
 ## GPL3 ##
 
-	Copyright (C) 2014 Ulf Hagström
+	Copyright (C) 2014 Ulf Hagström & Kristoffer Tångfelt
 
-    This program is free software: you can redistribute it and/or modify
+    This script is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
+    This script is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -82,3 +82,8 @@ Anyone is welcome to contribute to the ArchInstall script. There are various way
 
 1. Raise an [Issue](https://github.com/toocer/ArchInstall-script/issues) on GitHub
 2. Send us a pull request with your bug fixes and/or new features
+
+### Special Thanks ###
+
+Special thanks to Kristoffer Tångfelt [Visit him here](https://dynamict.se)  
+In one of his blogpost a early version that he created was run this is a fork of that script
