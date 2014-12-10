@@ -24,9 +24,9 @@ NOTE: Remember to change the password to something of your own.
 The configuration is following
 
 Partiononing
-1MB Bootrecord
-/boot = 127mb
-Swap  = 2gb
-/     = The rest
+* 1MB Bootrecord  
+* /boot = 127mb  
+* Swap  = 2gb  
+* /     = The rest
 
 The installations is with some questions to make your choices.
