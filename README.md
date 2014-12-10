@@ -3,6 +3,24 @@ ArchInstall-script BETA
 
 This is an install-script for Archlinux, created to provide a quick and easy fresh install, please read the **ENTIRE README** file before you do anything at all. I take no responsibility if this script breaks your machine, you use at your own risk! It's still a BETA. So PLEASE don't run this script on a server of yours unless you really know what you are doing, really!
 
+## GPL3 ##
+
+	Copyright (C) 2014 Ulf Hagström
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+
 ## Prepare ##
 The first thing you need to do, before using the script is to edit and match your locale settings, (mirror and locale). By default it is set to Swedish, because that's where I am from.
 
