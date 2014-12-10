@@ -54,7 +54,7 @@ Swap | 2 Gb | Not optional
 
 ### Packages installed ###
 
-* yaourt _useful tool_
+* yaourt _useful tool_ [More info about Yaourt](https://aur.archlinux.org/packages/yaourt/)
 * package-query
 * customizepkg
 * base
