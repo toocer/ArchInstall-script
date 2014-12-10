@@ -17,7 +17,7 @@ arch-chroot /mnt echo "KEYMAP=sv-latin1" > /mnt/etc/vconsole.conf
 #### Installation ####
 To execute an install with this script you can either start it directly inside the boot loader, or you could start it by downloading the script and run it.
 
-* Put the script it on a webserver accessible by your machine. Then add `script=http://adress.to/script.sh` in the bootloader configuration.
+* Put the script it on a webserver accessible by your machine. Then add `script=http://www.domain.tld/script.sh` in the bootloader configuration.
 
 * Or you could download the script to your machine and do `chmod +x scriptname.sh` and then execute it with `./scriptname.sh`.
 
@@ -34,5 +34,5 @@ bootrecord | 1 Mb |
 Swap | 2 Gb | Used on older machines
 * / | Remaining | 
 
-### Notes ###
+### NOTES ###
 It's highly recommended to make a test run on a virtual machine **before** you execute this script on a live machine. The default script behaviour is set to using the entire disk.
