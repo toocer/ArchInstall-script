@@ -14,7 +14,7 @@ arch-chroot /mnt echo "LANG=sv_SE.UTF-8" > /mnt/etc/locale.conf
 arch-chroot /mnt echo "KEYMAP=sv-latin1" > /mnt/etc/vconsole.conf
 ```
 
-#### Installation ####
+## Installation ##
 To execute an install with this script you can either start it directly inside the boot loader, or you could start it by downloading the script and run it.
 
 * Put the script it on a webserver accessible by your machine. Then add `script=http://www.domain.tld/script.sh` in the bootloader configuration.
