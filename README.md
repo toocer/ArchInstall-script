@@ -44,7 +44,7 @@ Swap | 2 Gb | Not optional
 * dialog
 * openssh _also started after installation_
 
-When you get the question: _Do you whant to install XFCE?_ you ar not forced to do so, it is optional. If you do choose to installl XFCE, the following additional packages will also be installed:
+When you get the question: _Do you want to install XFCE?_ you ar not forced to do so, it is optional. If you do choose to installl XFCE, the following additional packages will also be installed:
 
 * xorg
 * xfce4
