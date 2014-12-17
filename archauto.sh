@@ -3,6 +3,25 @@
 #DISK="$@"
 DISK="/dev/sda"
 
+function start_stage_1 {
+
+	start_stage_2
+
+}
+
+function start_stage_2 {
+
+while true; do
+  read -p "Do you want to delete your disk and install archlinux with XFCE ? " yn
+  case $yn in
+    [Yy]* ) do_stage_1; break;;
+    [Nn]* ) exit;;
+    * ) echo "Please answer yes or no."
+  esac
+done
+}
+
+
 function do_stage_1 {
   echo "Running Stage 1"
 
@@ -64,7 +83,7 @@ function do_stage_1 {
 
   # Sync FS for consistency
   sync
-
+ sleep 10
 }
 
 function do_stage_2 {
@@ -98,7 +117,7 @@ function do_stage_2 {
   # Remeber to Change this
 
   echo "root:hackthis123" | arch-chroot /mnt/ chpasswd root
-
+sleep 10
 }
 
 function do_stage_3 {
@@ -125,7 +144,7 @@ EOF
   arch-chroot /mnt /root/dostage3stuff.sh
 
 
-
+sleep 10
 }
 
 function do_stage_4 {
@@ -159,6 +178,7 @@ EOF
   # If you whant to install XFCE without question remove # from the next line
   # and add # to the above lines
   arch-chroot /mnt sh /root/dostage4stuff.sh
+  sleep 10
 }
 
 function do_stage_5 {
@@ -166,7 +186,7 @@ function do_stage_5 {
 cat <<EOF > /mnt/root/dostage5stuff.sh
 #!/bin/bash
 
-	arch-chroot /mnt systemctl enable lightdm
+	systemctl enable lightdm
 
 EOF
   #while true; do
@@ -194,10 +214,18 @@ function do_stage_6 {
   # Sync before reboot
   sync
   # reboot into installed system
-  reboot
+  # reboot
 
 
 }
+
+function end_stage {
+	
+	echo "End stage"
+    echo "This is the end, Thank you"
+}
+
+start_stage_1
 
 ##################################################################
 # Stage 1
@@ -237,5 +265,7 @@ do_stage_5
 # Finishing, clean up and reboot.
 ##################################################################
 do_stage_6
+
+end_stage
 
 # TODO: Rebuild script for question in the beginning then automate everything.
