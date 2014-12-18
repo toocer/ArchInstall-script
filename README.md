@@ -33,6 +33,9 @@ arch-chroot /mnt echo "KEYMAP=sv-latin1" > /mnt/etc/vconsole.conf
 ```
 
 ## Installation ##
+
+**NOTE:** Now you will get one question to install or not, then it goes thru the installation, Nothing vill be left on the /dev/sda disk
+
 To execute an install with this script you can either start it directly inside the boot loader, or you could start it by downloading the script and run it.
 
 * Put the script it on a webserver accessible by your machine. Then add `script=http://www.domain.tld/script.sh` in the bootloader configuration.
@@ -62,14 +65,14 @@ Swap | 2 Gb | Not optional
 * dialog
 * openssh _also started after installation_
 
-When you get the question: _Do you want to install XFCE?_ you ar not forced to do so, it is optional. If you do choose to installl XFCE, the following additional packages will also be installed:
+~~When you get the question: _Do you want to install XFCE?_ you ar not forced to do so, it is optional. If you do choose to installl XFCE, the following additional packages will also be installed:~~
 
 * xorg
 * xfce4
 * xfce4-goodies
 * lightdm-gtk2-greeter
 
-If you've selected to install XFCE you will get another question: _Do you whant to enable lightdm?_ It's the Light Desktop Manager, without it you only get the console.
+~~If you've selected to install XFCE you will get another question: _Do you whant to enable lightdm?_ It's the Light Desktop Manager, without it you only get the console.~~
 
 ### Notes ###
 It's highly recommended to make a test run on a virtual machine **before** you execute this script on a live machine. The default script behaviour is set to using the entire disk.
