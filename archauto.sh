@@ -15,12 +15,23 @@ while true; do
   read -p "Do you want to delete your disk and install archlinux with XFCE ? " yn
   case $yn in
     [Yy]* ) do_stage_1; break;;
-    [Nn]* ) exit;;
+    [Nn]* ) start_stage_3; break;;
     * ) echo "Please answer yes or no."
   esac
 done
 }
+function start_stage_3 {
+	while true; do
+	  read -p "Do you want to delete your disk and install archlinux without XFCE ? " yn
+	  case $yn in
+	    [Yy]* ) do_stage_1_noxfce; break;;
+	    [Nn]* ) exit;;
+	    * ) echo "Please answer yes or no."
+	  esac
+	done
+	}
 
+}
 
 function do_stage_1 {
   echo "Running Stage 1"
@@ -219,10 +230,80 @@ function do_stage_6 {
 
 }
 
+function do_stage_1_noxfce {
+	
+    echo "Running Stage 1"
+
+    if [ ! -x "/sbin/parted" ]; then
+      echo "This script requires /sbin/parted to run!" >&2
+      exit 1
+    fi
+
+    #while true; do
+    #    read -p "Warning! This will partition and format any unformatted storage volumes! Are you sure? " yn
+    #    case $yn in
+    #        [Yy]* ) break;;
+    #        [Nn]* ) exit;;
+    #        * ) echo "Please answer yes or no.";;
+    #    esac
+    #done
+
+    ## Begins of auto-parted part and format
+
+    parted -a optimal --script ${DISK} -- mktable gpt
+    parted -a none --script ${DISK} -- mkpart none 0 1MB
+    parted -a optimal --script ${DISK} -- mkpart ext2 1MB 128MB
+    parted -a optimal --script ${DISK} -- mkpart ext2 128MB 2174MB
+    parted -a optimal --script ${DISK} -- mkpart ext2 2174MB 100%
+    parted -a optimal --script ${DISK} -- set 1 bios_grub on
+
+    mkfs.ext4 ${DISK}2
+    mkfs.ext4 ${DISK}4
+    mkswap ${DISK}3
+    swapon ${DISK}3
+
+    ##################################################################
+    # expect ${DISK}1 to be GRUB-GPT-BIOS COMPAT
+    #	${DISK}2 to be /boot
+    #	${DISK}4 to be /
+    # ${DISK}3 to be SWAP
+    ##################################################################
+  
+    ##################################################################
+    # Stage 1, bootstrap partitions/filesystems and OS Base packages #
+    ##################################################################
+    # Mount /
+    mount ${DISK}4 /mnt
+
+    # Make /boot mountpoint
+    mkdir /mnt/boot
+
+    # Mount /boot on previously made mountpoint
+    mount ${DISK}2 /mnt/boot
+
+    # Replace mirrorlist with known fast and good Swedish mirror
+    # Change this to mirror close to you.
+    echo 'Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+
+    # Bootstrap the Base OS packages (and grub)
+    pacstrap /mnt base grub dialog openssh
+
+    cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+
+    # Sync FS for consistency
+    sync
+
+}
+
+
+
 function end_stage {
 	
 	echo "End stage"
     echo "This is the end, Thank you"
+	sleep 30
+	# Reboot
+	# reboot
 }
 
 start_stage_1
