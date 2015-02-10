@@ -41,14 +41,14 @@ function do_stage_1 {
     exit 1
   fi
 
-  #while true; do
-  #    read -p "Warning! This will partition and format any unformatted storage volumes! Are you sure? " yn
-  #    case $yn in
-  #        [Yy]* ) break;;
-  #        [Nn]* ) exit;;
-  #        * ) echo "Please answer yes or no.";;
-  #    esac
-  #done
+  while true; do
+      read -p "Warning! This will partition and format any unformatted storage volumes! Are you sure? " yn
+      case $yn in
+          [Yy]* ) break;;
+          [Nn]* ) exit;;
+          * ) echo "Please answer yes or no.";;
+      esac
+  done
 
   ## Begins of auto-parted part and format
 
@@ -147,9 +147,9 @@ wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /
 tar -zxf /root/yaourt.tar.gz -C /root
 tar -zxf /root/customizepkg.tar.gz -C /root
 tar -zxf /root/package-query.tar.gz -C /root
-cd /root/package-query && makepkg -si --asroot --noconfirm
-cd /root/customizepkg && makepkg -si --asroot --noconfirm
-cd /root/yaourt && makepkg -si --asroot --noconfirm
+cd /root/package-query && makepkg -si --noconfirm
+cd /root/customizepkg && makepkg -si --noconfirm
+cd /root/yaourt && makepkg -si --noconfirm
 EOF
   chmod +x /mnt/root/dostage3stuff.sh
   arch-chroot /mnt /root/dostage3stuff.sh
@@ -283,6 +283,8 @@ function do_stage_1_noxfce {
 
     # Replace mirrorlist with known fast and good Swedish mirror
     # Change this to mirror close to you.
+		# Check mirror list on https://www.archlinux.org/mirrorlist/
+
     echo 'Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
     # Bootstrap the Base OS packages (and grub)
