@@ -20,6 +20,7 @@ while true; do
   esac
 done
 }
+
 function start_stage_3 {
 	while true; do
 	  read -p "Do you want to delete your disk and install archlinux without XFCE ? " yn
@@ -31,7 +32,6 @@ function start_stage_3 {
 	done
 	}
 
-}
 
 function do_stage_1 {
   echo "Running Stage 1"
@@ -70,7 +70,7 @@ function do_stage_1 {
   #	${DISK}4 to be /
   # ${DISK}3 to be SWAP
   ##################################################################
-  
+
   ##################################################################
   # Stage 1, bootstrap partitions/filesystems and OS Base packages #
   ##################################################################
@@ -136,7 +136,7 @@ function do_stage_3 {
 
   #
   # Install yaourt and dependecis
-  # 
+  #
 
 cat <<EOF > /mnt/root/dostage3stuff.sh
 #!/bin/bash
@@ -160,7 +160,7 @@ sleep 10
 
 function do_stage_4 {
   echo "Running stage 4, Installing XFCE"
-  
+
 cat <<EOF > /mnt/root/dostage4stuff.sh
 #!/bin/bash
 
@@ -231,7 +231,7 @@ function do_stage_6 {
 }
 
 function do_stage_1_noxfce {
-	
+
     echo "Running Stage 1"
 
     if [ ! -x "/sbin/parted" ]; then
@@ -268,7 +268,7 @@ function do_stage_1_noxfce {
     #	${DISK}4 to be /
     # ${DISK}3 to be SWAP
     ##################################################################
-  
+
     ##################################################################
     # Stage 1, bootstrap partitions/filesystems and OS Base packages #
     ##################################################################
@@ -298,7 +298,7 @@ function do_stage_1_noxfce {
 
 
 function end_stage {
-	
+
 	echo "End stage"
     echo "This is the end, Thank you"
 	sleep 30
