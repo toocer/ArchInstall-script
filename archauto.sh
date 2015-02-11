@@ -316,7 +316,7 @@ start_stage_1
 # Partitioning disk and setting mirrorlist (Change to mirror close
 # to you), Bootstrap the Base OS packages (and grub)
 ##################################################################
-do_stage_1
+# do_stage_1
 ##################################################################
 # Stage 2
 #
