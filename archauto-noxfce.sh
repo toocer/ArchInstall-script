@@ -58,6 +58,8 @@ function partioning {
 
  sleep 10
 
+ install_arch_basic
+
 }
 
 function install_arch_basic {
@@ -73,33 +75,38 @@ function install_arch_basic {
   # Sync FS for consistency
   sync
 
+  install_yaourt
+
 }
 
 function install_yaourt {
-  cat <<EOF > /mnt/root/InstallYaourt.sh
+cat <<EOF > /mnt/root/InstallYaourt.sh
 #!/bin/bash
 pacman -S wget base-devel --noconfirm
-wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz -O /root/yaourt.tar.gz
-wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz -O /root/package-query.tar.gz
-wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /root/customizepkg.tar.gz
-tar -zxf /root/yaourt.tar.gz -C /root
-tar -zxf /root/customizepkg.tar.gz -C /root
-tar -zxf /root/package-query.tar.gz -C /root
-cd /root/package-query && makepkg -si --noconfirm
-cd /root/customizepkg && makepkg -si --noconfirm
-cd /root/yaourt && makepkg -si --noconfirm
+useradd -m tempo
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
+usermod -a -G wheel tempo
+cd /home/tempo
+wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz -O /home/tempo/yaourt.tar.gz
+wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz -O /home/tempo/package-query.tar.gz
+wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /home/tempo/customizepkg.tar.gz
+tar -zxf /home/tempo/yaourt.tar.gz -C /home/tempo
+tar -zxf /home/tempo/customizepkg.tar.gz -C /home/tempo
+tar -zxf /home/tempo/package-query.tar.gz -C /home/tempo
+chmod -R 777 /home/tempo
+su - tempo -c "cd /home/tempo/package-query && makepkg -si --noconfirm"
+su - tempo -c "cd /home/tempo/customizepkg && makepkg -si --noconfirm"
+su - tempo -c "cd /home/tempo/yaourt && makepkg -si --noconfirm"
+userdel -r tempo
 EOF
-    chmod +x /mnt/root/InstallYourt.sh
-    arch-chroot /mnt /root/InstallYourt.sh
+
+chmod +x /mnt/root/InstallYaourt.sh
+arch-chroot /mnt /root/InstallYaourt.sh
 
 
-
+finishing
 }
 
-function install_apps {
-
-
-}
 
 function finishing {
   echo "root:hackthis123" | arch-chroot /mnt/ chpasswd root
@@ -122,7 +129,7 @@ function finishing {
   arch-chroot /mnt systemctl enable sshd
   arch-chroot /mnt systemctl enable dhcpcd
 
-
+ sync
 
 }
 
