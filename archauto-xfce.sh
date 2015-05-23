@@ -104,6 +104,16 @@ EOF
 chmod +x /mnt/root/InstallYaourt.sh
 arch-chroot /mnt /root/InstallYaourt.sh
 
+cat <<EOF > /mnt/root/xfce4-install.sh
+#!/bin/bash
+
+yaourt -S xorg xfce4 xfce4-goodies lightdm-gtk2-greeter --noconfirm
+systemctl enable lightdm
+
+EOF
+
+arch-chroot /mnt sh /root/xfce4-install.sh
+
 
 finishing
 }
