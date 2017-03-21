@@ -53,7 +53,7 @@ function partioning {
 
   # Replace mirrorlist with known fast and good Swedish mirror
   # Change this to mirror close to you.
-  echo 'Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+  echo 'Server = http://foss.dhyrule.se/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 
  sleep 10
@@ -65,7 +65,7 @@ function partioning {
 function install_arch_basic {
   # Replace mirrorlist with known fast and good Swedish mirror
   # Change this to mirror close to you.
-  echo 'Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+  echo 'Server = http://foss.dhyrule.se/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
   # Bootstrap the Base OS packages (and grub)
   pacstrap /mnt base grub dialog openssh
