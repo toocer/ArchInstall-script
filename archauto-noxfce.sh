@@ -87,9 +87,9 @@ useradd -m tempo
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
 usermod -a -G wheel tempo
 cd /home/tempo
-wget https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz -O /home/tempo/yaourt.tar.gz
-wget https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz -O /home/tempo/package-query.tar.gz
-wget https://aur.archlinux.org/packages/cu/customizepkg/customizepkg.tar.gz -O /home/tempo/customizepkg.tar.gz
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz -O /home/tempo/yaourt.tar.gz
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz -O /home/tempo/package-query.tar.gz
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/customizepkg-git.tar.gz -O /home/tempo/customizepkg.tar.gz
 tar -zxf /home/tempo/yaourt.tar.gz -C /home/tempo
 tar -zxf /home/tempo/customizepkg.tar.gz -C /home/tempo
 tar -zxf /home/tempo/package-query.tar.gz -C /home/tempo
