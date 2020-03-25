@@ -52,8 +52,8 @@ function partioning {
   mount ${DISK}2 /mnt/boot
 
   # Replace mirrorlist with known fast and good Swedish mirror
-  # Change this to mirror close to you.
-  echo 'Server = http://foss.dhyrule.se/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+  # Change this to mirror close to you. 
+  echo 'Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 
  sleep 10
