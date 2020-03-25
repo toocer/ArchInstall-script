@@ -5,7 +5,7 @@ This is an install-script for Archlinux, created to provide a quick and easy fre
 
 ## GPL3 ##
 
-	Copyright (C) 2014 Ulf Hagström & Kristoffer Tångfelt
+	Copyright (C) 2014 Ulf Söder & Kristoffer Tångfelt
 
     This script is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,10 +50,10 @@ The script will ask you a few questions before it actually executes.
 
 Partiononing | Space Usage | Notes
 ------------ | ----------- | -----
-bootrecord | 1 Mb | 
-/boot | 127 Mb | 
+bootrecord | 1 Mb |
+/boot | 127 Mb |
 Swap | 2 Gb | Not optional
-* / | Remaining | 
+* / | Remaining |
 
 ### Packages installed ###
 
