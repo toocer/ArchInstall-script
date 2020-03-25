@@ -52,7 +52,7 @@ function partioning {
   mount ${DISK}2 /mnt/boot
 
   # Replace mirrorlist with known fast and good Swedish mirror
-  # Change this to mirror close to you. 
+  # Change this to mirror close to you.
   echo 'Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 
@@ -65,7 +65,7 @@ function partioning {
 function install_arch_basic {
   # Replace mirrorlist with known fast and good Swedish mirror
   # Change this to mirror close to you.
-  echo 'Server = http://foss.dhyrule.se/linux/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+  echo 'Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
   # Bootstrap the Base OS packages (and grub)
   pacstrap /mnt base grub dialog openssh
