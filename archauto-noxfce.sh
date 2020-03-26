@@ -129,7 +129,7 @@ function finishing {
   # Enable SSHD and DHCP-Client for remote access
   arch-chroot /mnt systemctl enable sshd
   arch-chroot /mnt systemctl enabled dhcpcd
-  arch-chroot /mnt mkinitcpio -P
+  arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
  sync
 
