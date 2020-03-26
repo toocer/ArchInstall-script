@@ -111,11 +111,16 @@ finishing
 function finishing {
   echo "root:hackthis123" | arch-chroot /mnt/ chpasswd root
 
+  # Removed. not working in virtual box.
   # Configure and embed installed GRUB from pacstrap stage
   # Change SDA to your device.
-  arch-chroot /mnt grub-install --target=i386-pc /dev/sda
-  arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg
+  # arch-chroot /mnt grub-install --target=i386-pc /dev/sda
+  # arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg
   # Generate appropriate fstab entries
+  arch-chroot /mnt pacman -Syu syslinux gptfdisk
+  arch-chroot /mnt syslinux-install_update -i -a -m
+
+
   genfstab -U /mnt >> /mnt/etc/fstab
 
   # Configure Swedish Locale, language and keymaps
@@ -128,8 +133,10 @@ function finishing {
 
   # Enable SSHD and DHCP-Client for remote access
   arch-chroot /mnt systemctl enable sshd
+  arch-chroot /mnt pacman -Syu dhcpcd
   arch-chroot /mnt systemctl enabled dhcpcd
-  arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+
+
 
  sync
 
