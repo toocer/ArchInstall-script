@@ -1,4 +1,4 @@
-ArchInstall-script BETA
+ArchInstall-script BETA - not working with current Archlinux
 ==================
 
 This is an install-script for Archlinux, created to provide a quick and easy fresh install, please read the **ENTIRE README** file before you do anything at all. I take no responsibility if this script breaks your machine, you use at your own risk! It's still a BETA. So PLEASE don't run this script on a server of yours unless you really know what you are doing, really!
