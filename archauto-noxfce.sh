@@ -112,7 +112,8 @@ function finishing {
   echo "root:hackthis123" | arch-chroot /mnt/ chpasswd root
 
   # Configure and embed installed GRUB from pacstrap stage
-  arch-chroot /mnt grub-install --target=i386-pc ${DISK}
+  # Change SDA to your device.
+  arch-chroot /mnt grub-install --target=i386-pc /dev/sda
   arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg
   # Generate appropriate fstab entries
   genfstab -U /mnt >> /mnt/etc/fstab
@@ -127,7 +128,7 @@ function finishing {
 
   # Enable SSHD and DHCP-Client for remote access
   arch-chroot /mnt systemctl enable sshd
-  arch-chroot /mnt systemctl enable dhcpcd
+  arch-chroot /mnt systemctl enabled dhcpcd
 
  sync
 
