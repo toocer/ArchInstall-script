@@ -88,5 +88,5 @@ Anyone is welcome to contribute to the ArchInstall script. There are various way
 
 ### Special Thanks ###
 
-Special thanks to Kristoffer Tångfelt [Visit him here](https://dynamict.se)  
-In one of his blogpost a early version that he created was run this is a fork of that script
+Special thanks to Kristoffer Tångfelt  
+In one of his blogpost a early version that he created was run this is a fork of that script (Site removed)
