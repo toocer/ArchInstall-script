@@ -129,6 +129,7 @@ function finishing {
   # Enable SSHD and DHCP-Client for remote access
   arch-chroot /mnt systemctl enable sshd
   arch-chroot /mnt systemctl enabled dhcpcd
+  arch-chroot /mnt mkinitcpio -P
 
  sync
 
