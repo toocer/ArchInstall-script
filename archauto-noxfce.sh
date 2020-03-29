@@ -28,8 +28,8 @@ function partioning {
   parted -a optimal --script ${DISK} -- mkpart ext2 2174MB 100%
   parted -a optimal --script ${DISK} -- set 1 bios_grub on
 
-  mkfs.ext4 ${DISK}2
-  mkfs.ext4 ${DISK}4
+  mkfs.ext2 ${DISK}2
+  mkfs.ext2 ${DISK}4
   mkswap ${DISK}3
   swapon ${DISK}3
   ##################################################################
@@ -114,11 +114,11 @@ function finishing {
   # Removed. not working in virtual box.
   # Configure and embed installed GRUB from pacstrap stage
   # Change SDA to your device.
-  # arch-chroot /mnt grub-install --target=i386-pc /dev/sda
-  # arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg
+  arch-chroot /mnt grub-install --target=i386-pc /dev/sda
+  arch-chroot /mnt grub-mkconfig > /mnt/boot/grub/grub.cfg
   # Generate appropriate fstab entries
-  arch-chroot /mnt pacman -Syu syslinux gptfdisk
-  arch-chroot /mnt syslinux-install_update -i -a -m
+  #arch-chroot /mnt pacman -Syu syslinux gptfdisk
+  #arch-chroot /mnt syslinux-install_update -i -a -m
 
 
   genfstab -U /mnt >> /mnt/etc/fstab
